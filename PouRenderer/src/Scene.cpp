@@ -327,12 +327,16 @@ void Scene::clear()
 
 void Scene::setupCamera(CameraAngle &camAngle, glm::mat4 &projection)
 {
-    glm::vec3 camPos(0,
+    /**glm::vec3 camPos(camAngle.distance*cos(camAngle.angleXY*3.14f/180.0f)*cos(camAngle.angleZ*3.14f/180.0f),
+                camAngle.distance*sin(camAngle.angleXY*3.14f/180.0f)*cos(camAngle.angleZ*3.14f/180.0f),
+                camAngle.distance*sin(camAngle.angleZ*3.14f/180.0f));**/
+
+    /**glm::vec3 camPos(0,
                 -camAngle.distance*cos(camAngle.angleZ*3.14f/180.0f),
-                camAngle.distance*sin(camAngle.angleZ*3.14f/180.0f));
-        /*glm::vec3 camPos(0,
-                -camAngle.distance,
-                0);*/
+                camAngle.distance*sin(camAngle.angleZ*3.14f/180.0f));*/
+    glm::vec3 camPos(camAngle.distance,
+                0,
+                0);
 
 
     glm::mat4 view = glm::mat4(1.0f);
@@ -363,8 +367,8 @@ void Scene::renderModel(Model *srcModel, unsigned int defaultFBO)
 
     glm::mat4 model = glm::mat4( 1.0f);
     model = srcModel->getNormalization();
-    //model = glm::rotate(glm::mat4( 1.0f), -m_camZAngle*3.14f/180.0f, glm::vec3(1,0,0))*model;
-    model = glm::rotate(glm::mat4( 1.0f), -m_camXYAngle*3.14f/180.0f, glm::vec3(0,0,1))*model;
+    model = glm::rotate(glm::mat4( 1.0f), m_camXYAngle*3.14f/180.0f, glm::vec3(0,0,1))*model;
+    model = glm::rotate(glm::mat4( 1.0f), m_camZAngle*3.14f/180.0f, glm::vec3(0,1,0))*model;
 
     for(auto &light : m_lights)
         this->renderDepthMap(light, srcModel, model);

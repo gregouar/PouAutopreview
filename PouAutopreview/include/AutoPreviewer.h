@@ -17,11 +17,14 @@ struct Config
 
     std::vector<CameraAngle> cams;
     std::vector<std::string> cams_filenames;
+    std::vector<std::string> cams_scenes;
 
     std::string defaultPreviewPath;
     std::string previewFormat;
 
     std::string defaultScene;
+    std::unordered_map<std::string, std::string> scenesPerName;
+
 
     bool exploreSubFolders;
 };

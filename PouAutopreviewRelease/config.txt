@@ -10,22 +10,24 @@ AutoPreviewSuffix: autopreview
 PreviewFormat: png
 
 //Window 
-Width: 2000
-Height: 2000
+Width: 800
+Height: 800
 
 //SceneFile 
-//DefaultScene: Config/MetalScene.txt
-//DefaultScene: Config/TransparentScene.txt
 DefaultScene: Config/DefaultScene.txt
+Scene: SceneLeft Config/Scene_Left.txt
+Scene: SceneRight Config/Scene_Right.txt
+Scene: SceneTopLeftAnt Config/Scene_TopLeftAnt.txt
+Scene: SceneTopLeftPost Config/Scene_TopLeftPost.txt
 
-//Distance angleXY angleZ Perspective Filename(optional)
-Cam: 1.5 25 -10 true persp
-Cam: 1.5 0 0 false lateral1
-Cam: 1.5 90 0 false frontal
-Cam: 1.5 180 0 false lateral2
-Cam: 1.5 270 0 false back
-Cam: 1.5 0 -90 false dorsal
-Cam: 1.5 0 90 false ventral
+//Distance angleXY angleZ Perspective Filename(optional)  Scene(optional)
+//Cam: 1.5 25 -10 true persp 
+Cam: 1.5 90 0 false lateralR SceneRight
+Cam: 1.5 0 0 false anterior
+Cam: 1.5 -90 0 false lateralL SceneLeft 
+Cam: 1.5 180 0 false posterior
+Cam: 1.5 0 -90 false ventral
+Cam: 1.5 180 90 false dorsal
 
 
 
