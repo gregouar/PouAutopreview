@@ -1,0 +1,21 @@
+//Textures ?
+UseTextures: false
+
+//Color RGBA
+Background: 0.65 0.65 0.5 0.0
+
+//HDR Environment
+HDR: Data/panorama.hdr
+
+//Color RGB and Intensity
+Ambient: 1.0 1.0 1.0 0.0
+
+//Color RGB, Intensity and Direction and Shadow
+Light: 1.0 1.0 1.0 50 0.0 -1 0.5 false
+
+Light: 1.0 1.0 1.0 5 1.0 0.5 -1.0 false
+
+//Albedo  RGBA, Metallic, Roughness
+Material: 0.8 0.8 0.5 0.15 0.1 0.3  
+
+

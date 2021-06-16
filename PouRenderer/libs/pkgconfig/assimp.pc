@@ -1,0 +1,9 @@
+libdir=D:\C++\WooCommerceShakube\assimp-install/lib
+includedir=D:\C++\WooCommerceShakube\assimp-install/include
+
+Name: Assimp
+Description: Import various well-known 3D model formats in an uniform manner.
+Version: 5.0.1
+Libs: -L${libdir} -lassimp
+Libs.private:  
+Cflags: -I${includedir}

@@ -1,0 +1,32 @@
+/// FILES OPTIONS ///
+InputFolder: ToPreview
+ExploreSubFolders: true
+
+AutoPreviewSuffix: autopreview
+
+/// RENDERING ///
+
+//Preview file format
+PreviewFormat: png
+
+//Window 
+Width: 2000
+Height: 2000
+
+//SceneFile 
+//DefaultScene: Config/MetalScene.txt
+//DefaultScene: Config/TransparentScene.txt
+DefaultScene: Config/DefaultScene.txt
+
+//Distance angleXY angleZ Perspective Filename(optional)
+Cam: 1.5 25 -10 true persp
+Cam: 1.5 0 0 false lateral1
+Cam: 1.5 90 0 false frontal
+Cam: 1.5 180 0 false lateral2
+Cam: 1.5 270 0 false back
+Cam: 1.5 0 -90 false dorsal
+Cam: 1.5 0 90 false ventral
+
+
+
+
