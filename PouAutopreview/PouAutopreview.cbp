@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="PouAutopreview" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/PouAutopreview" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/Debug" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="PouRenderer/include" />
+					<Add directory="PouAutopreview/include" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/PouAutopreview" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/Release" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="PouRenderer/include" />
+					<Add directory="PouAutopreview/include" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+			<Add directory="../PouRenderer/include" />
+			<Add directory="include" />
+		</Compiler>
+		<Linker>
+			<Add library="glfw3" />
+			<Add library="gdi32" />
+			<Add library="libassimp.dll" />
+			<Add library="libzlibstatic" />
+			<Add directory="../PouRenderer/libs" />
+		</Linker>
+		<Unit filename="../PouRenderer/include/Dictionnary.h" />
+		<Unit filename="../PouRenderer/include/Mesh.h" />
+		<Unit filename="../PouRenderer/include/Model.h" />
+		<Unit filename="../PouRenderer/include/RenderingWindow.h" />
+		<Unit filename="../PouRenderer/include/Scene.h" />
+		<Unit filename="../PouRenderer/include/Shader.h" />
+		<Unit filename="../PouRenderer/include/Utils.h" />
+		<Unit filename="../PouRenderer/src/Dictionnary.cpp" />
+		<Unit filename="../PouRenderer/src/Mesh.cpp" />
+		<Unit filename="../PouRenderer/src/Model.cpp" />
+		<Unit filename="../PouRenderer/src/RenderingWindow.cpp" />
+		<Unit filename="../PouRenderer/src/RenderingWindow_shaders.cpp" />
+		<Unit filename="../PouRenderer/src/Scene.cpp" />
+		<Unit filename="../PouRenderer/src/Scene_shaders.cpp" />
+		<Unit filename="../PouRenderer/src/Shader.cpp" />
+		<Unit filename="../PouRenderer/src/Utils.cpp" />
+		<Unit filename="../PouRenderer/src/glad.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="include/AutoPreviewer.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="src/AutoPreviewer.cpp" />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
