@@ -11,14 +11,11 @@ HDR: Data/panorama2.hdr
 Ambient: 1.0 1.0 1.0 0.0
 
 //Color RGB, Intensity, Direction, EnableShadow
-Light: 1.0 1.0 1.0 5 -1.0 1.0 -1.0 true
 
+Light: 1.0 1.0 1.0 5 -1.0 0.5 -1.0 true
 
-//Light: 1.0 1.0 1.0 0.2 0.0 0.0 -1.0 true
-//Light: 1.0 1.0 1.0 5 1.0 0.5 -1.0 true
-//Light: 1.0 1.0 1.0 1.5 -1.0 0.5 1.0 true
-
-//Light: 1.0 1.0 1.0 0.2 0.0 0.0 1.0 true
+Light: 1.0 1.0 1.0 0.2 0.0 0.0 -1.0 true
+Light: 1.0 1.0 1.0 1.5 1.0 0.5 1.0 true
 
 //Albedo  RGBA, Metallic, Roughness
 Material: 0.5 0.5 0.5 1.0 0.0 0.4  

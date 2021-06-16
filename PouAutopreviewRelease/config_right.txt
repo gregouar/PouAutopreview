@@ -1,0 +1,35 @@
+/// FILES OPTIONS ///
+InputFolder: ToPreview_right
+ExploreSubFolders: true
+
+AutoPreviewSuffix: autopreview
+
+/// RENDERING ///
+
+//Preview file format
+PreviewFormat: png
+
+//Window 
+Width: 800
+Height: 800
+
+//SceneFile 
+DefaultScene: Config/DefaultScene.txt
+Scene: SceneLeft Config/Scene_Left.txt
+Scene: SceneRight Config/Scene_Right.txt
+Scene: SceneTopLeft Config/DefaultScene.txt
+Scene: SceneTopLeftPost Config/Scene_TopLeftPost.txt
+Scene: SceneTopRight Config/Scene_TopRight.txt
+
+//Distance angleXY angleZ Perspective Filename(optional)  Scene(optional)
+//Cam: 1.5 25 -10 true persp 
+Cam: 1.5 90 0 false lateral SceneRight
+Cam: 1.5 0 0 false anterior
+Cam: 1.5 -90 0 false medial SceneLeft 
+Cam: 1.5 180 0 false posterior
+Cam: 1.5 0 -90 false ventral SceneTopLeft 
+Cam: 1.5 180 90 false dorsal SceneTopRight
+
+
+
+

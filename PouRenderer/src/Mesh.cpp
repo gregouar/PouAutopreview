@@ -4,14 +4,22 @@
 Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture> textures) :
     m_vertices(vertices),
     m_indices(indices),
-    m_textures(textures)
+    m_textures(textures),
+    m_VAO(0),
+    m_VBO(0),
+    m_EBO(0)
 {
     this->setupMesh();
 }
 
 Mesh::~Mesh()
 {
-    //dtor
+    /**if(m_EBO)
+        glDeleteBuffers(1, &m_EBO);
+    if(m_VBO)
+        glDeleteBuffers(1, &m_VBO);
+    if(m_VAO)
+        glDeleteVertexArrays(1, &m_VAO);**/
 }
 
 

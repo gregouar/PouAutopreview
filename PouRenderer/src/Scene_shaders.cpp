@@ -735,7 +735,8 @@ if(enableTextures)
     code +=
 //"if(nbrDiffuseTextures != 0) {"
 //"fragAlbedo = vec4(1,0,0,1);"
-"fragAlbedo = texture(texture_diffuse1, TexCoords);"
+//"fragAlbedo = texture(texture_diffuse1, TexCoords);"
+"fragAlbedo = texture(texture_diffuse1, vec2(TexCoords.x, 1.0-TexCoords.y));"
 //"}"
 "";
 }
