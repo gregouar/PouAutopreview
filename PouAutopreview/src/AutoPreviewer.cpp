@@ -81,7 +81,10 @@ bool AutoPreviewer::loadConfig(const std::string &configPath)
 
 
         } else if(fieldStr == "AutoPreviewSuffix:") {
-            dataFile >> m_config.defaultPreviewPath;
+            while(dataFile.peek() == ' ')
+                dataFile.ignore();
+            if(dataFile.peek() != '\n')
+                dataFile >> m_config.defaultPreviewPath;
         }
         else if(fieldStr == "PreviewFormat:") {
             dataFile >> m_config.previewFormat;
@@ -144,6 +147,8 @@ void AutoPreviewer::exploreSubDirectory(const std::string &directoryPath)
         || strExt == ".fbx" || strExt == ".FBX"
         || strExt == ".ply" || strExt == ".PLY")
             this->renderPreviews(filepath);
+       // else
+         //   std::cout<<"NO : "<<filepath<<std::endl;
 
         if(m_forceStop)
             break;
@@ -172,7 +177,12 @@ void AutoPreviewer::renderPreviews(const std::filesystem::path &modelPath)
             m_forceStop = true;
 
         std::string previewFilePath =
-                modelPath.parent_path().string()+"\\"+modelPath.stem().string()+"_"+m_config.defaultPreviewPath+"_"+m_config.cams_filenames[i]; //std::to_string(i);
+                modelPath.parent_path().string()+"\\"+modelPath.stem().string();
+
+        if(!m_config.defaultPreviewPath.empty())
+                previewFilePath += "_"+m_config.defaultPreviewPath;
+
+        previewFilePath += "_"+m_config.cams_filenames[i]; //std::to_string(i);
 
         std::cout<<"Writing: "<<previewFilePath<<std::endl;
         m_renderingWindow.printscreen(previewFilePath, m_config.previewFormat);
