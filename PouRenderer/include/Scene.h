@@ -5,6 +5,7 @@
 
 #include "Model.h"
 #include "Dictionnary.h"
+#include "TextRenderer.h"
 
 struct Material
 {
@@ -47,7 +48,7 @@ class Scene
 
         void clear();
         void setupCamera(CameraAngle &camAngle, glm::mat4 &projection);
-        void renderModel(Model *model, unsigned int defaultFBO = 0);
+        void renderModel(TextRenderer *textRenderer, Model *model, unsigned int defaultFBO = 0);
 
     protected:
         bool loadHDR(const std::string &hdrPath);
@@ -55,6 +56,7 @@ class Scene
         void compileRenderToDepthShader();
         void generateBackfaceBuffers();
         void generateShadowmapBuffers();
+        void compileUIShader();
 
         int bindShadowMaps(int textureIdShift);
 
@@ -63,6 +65,7 @@ class Scene
         void renderBack(Model *srcModel, glm::mat4 &model);
         void blurBack();
         void renderFront(Model *srcModel, glm::mat4 &model);
+        void renderScale(TextRenderer *textRenderer, float scaleFactor);
 
         std::string getDefaultShaderVertexCode(bool enableShadowMaps);
         std::string getDefaultShaderFragmentCode(bool enableTextures, bool enableBackfaceLighting);
@@ -80,7 +83,8 @@ class Scene
                 m_backfaceShader[2],
                 m_smartBlurShader,
                 m_blurShader,
-                m_renderToDepthShader;
+                m_renderToDepthShader,
+                m_UIshader;
 
 
         size_t  m_width,

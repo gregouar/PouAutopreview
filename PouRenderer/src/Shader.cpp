@@ -128,6 +128,12 @@ void Shader::setFloat(const std::string &name, float value) const
         glUniform1f(glGetUniformLocation(m_ID, name.c_str()), value);
 }
 
+void Shader::setVec2(const std::string &name, const glm::vec2 &vec) const
+{
+    if(m_isCompiled)
+        glUniform2fv(glGetUniformLocation(m_ID, name.c_str()), 1, &vec[0]);
+}
+
 void Shader::setVec3(const std::string &name, const glm::vec3 &vec) const
 {
     if(m_isCompiled)

@@ -9,6 +9,7 @@
 #include <string>
 
 #include "Scene.h"
+#include "TextRenderer.h"
 
 class RenderingWindow
 {
@@ -17,7 +18,7 @@ class RenderingWindow
         virtual ~RenderingWindow();
 
         bool create(size_t width, size_t height, const std::string &title = "My Awesome App");
-        bool initRendering();
+        bool initRendering(const std::string &textFont);
         void destroy();
         bool update();
 
@@ -85,6 +86,8 @@ class RenderingWindow
         Scene *m_curScene;
         Scene *m_defaultScene;
         std::unordered_map<std::string, Scene> m_scenes;
+
+        TextRenderer m_textRenderer;
 };
 
 #endif // RENDERINGWINDOW_H

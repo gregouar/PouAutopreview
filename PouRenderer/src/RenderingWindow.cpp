@@ -229,7 +229,7 @@ bool RenderingWindow::update()
         m_curScene->clear();
         m_curScene->setupCamera(m_camAngle, m_camAngle.perspective ? m_projectionMatrix : m_orthoMatrix);
        // m_curScene->setupCamera(m_camAngle, m_projectionMatrix);
-        m_curScene->renderModel(m_model, m_renderingFBO);
+        m_curScene->renderModel(&m_textRenderer, m_model, m_renderingFBO);
     }
 
     glBindFramebuffer(GL_DRAW_FRAMEBUFFER, m_antialiasedFBO);
@@ -254,7 +254,7 @@ bool RenderingWindow::update()
     return (true);
 }
 
-bool RenderingWindow::initRendering()
+bool RenderingWindow::initRendering(const std::string &textFont)
 {
     this->generateBrdflut();
     this->createRenderingFBO();
@@ -276,6 +276,7 @@ bool RenderingWindow::initRendering()
     //m_orthoMatrix = glm::mat4(glOrtho(0,800,0,600,0,2));
 
 
+    m_textRenderer.initRendering(m_width, m_height, textFont);
 
     return (true);
 }

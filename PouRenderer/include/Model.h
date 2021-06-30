@@ -18,6 +18,7 @@ class Model
 
         void draw(Shader *shader, Shader *shaderTextured, int textureIdShift);
 
+        float getScaleFactor();
         const glm::mat4 &getNormalization();
 
     protected:
@@ -38,7 +39,8 @@ class Model
         glm::vec3 m_minVertex;
         glm::vec3 m_maxVertex;
 
-        glm::mat4 m_normalizationMatrix;
+        float       m_scaleFactor;
+        glm::mat4   m_normalizationMatrix;
 };
 
 

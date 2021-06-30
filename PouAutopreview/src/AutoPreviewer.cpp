@@ -10,6 +10,7 @@ Config::Config() :
     inputFolder = "ToPreview";
     previewFormat = "jpg";
     exploreSubFolders = 1;
+    fontPath = "Data/arial.ttf";
 }
 
 AutoPreviewer::AutoPreviewer()
@@ -89,6 +90,9 @@ bool AutoPreviewer::loadConfig(const std::string &configPath)
         else if(fieldStr == "PreviewFormat:") {
             dataFile >> m_config.previewFormat;
         }
+        else if(fieldStr == "Font:") {
+            dataFile >> m_config.fontPath;
+        }
         else if(fieldStr == "DefaultScene:") {
             dataFile >> m_config.defaultScene;
         }
@@ -124,7 +128,8 @@ void AutoPreviewer::exploreDirectory()
     for(auto scene : m_config.scenesPerName)
         m_renderingWindow.addAndLoadScene(scene.first, scene.second);
 
-    m_renderingWindow.initRendering();
+    m_renderingWindow.initRendering(m_config.fontPath);
+    //g_textRenderer.initRendering(m_config.window_width, m_config.window_height, "Data/arial.ttf");
 
    this->exploreSubDirectory(m_config.inputFolder);
 

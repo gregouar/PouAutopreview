@@ -10,8 +10,11 @@ AutoPreviewSuffix: autopreview
 PreviewFormat: png
 
 //Window 
-Width: 800
-Height: 800
+Width: 2000
+Height: 2000
+
+//Text
+Font: Data/arial.ttf
 
 //SceneFile 
 DefaultScene: Config/DefaultScene.txt

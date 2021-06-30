@@ -1,8 +1,8 @@
 #include <iostream>
-
 #include "AutoPreviewer.h"
 
 using namespace std;
+
 
 int main()
 {

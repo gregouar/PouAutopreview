@@ -1126,3 +1126,45 @@ void Scene::compileRenderToDepthShader()
     m_renderToDepthShader.compile(vertexCode, fragCode);
 }
 
+
+
+void Scene::compileUIShader()
+{
+
+    std::string vertCode =
+"#version 430 core \n"
+"layout (location = 0) in vec3 aPos;"
+"layout (location = 1) in vec2 aTexCoords;"
+""
+"uniform vec2 startPos;"
+"uniform vec2 size;"
+""
+"out vec2 TexCoords;"
+""
+"void main()"
+"{"
+"    TexCoords = aTexCoords;"
+""
+"   gl_Position.xy = startPos+size*(aPos.xy + vec2(1.0))*0.5;"
+"   gl_Position.zw = vec2(0.0,1.0);"
+""
+//"    gl_Position = vec4(aPos, 1.0);"
+"}";
+
+    std::string fragCode =
+"#version 430 core \n"
+"out vec4 FragColor;"
+"  "
+"in vec2 TexCoords;"
+""
+"uniform vec4 color;"
+""
+//"uniform sampler2D image;"
+"void main()"
+"{             "
+"    FragColor = color;"
+"}";
+
+    m_UIshader.compile(vertCode, fragCode);
+}
+

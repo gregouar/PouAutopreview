@@ -13,6 +13,9 @@ PreviewFormat: png
 Width: 800
 Height: 800
 
+//Text
+Font: Data/arial.ttf
+
 //SceneFile 
 DefaultScene: Config/DefaultScene.txt
 Scene: SceneLeft Config/Scene_Left.txt

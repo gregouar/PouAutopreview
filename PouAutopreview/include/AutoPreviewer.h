@@ -21,6 +21,7 @@ struct Config
 
     std::string defaultPreviewPath;
     std::string previewFormat;
+    std::string fontPath;
 
     std::string defaultScene;
     std::unordered_map<std::string, std::string> scenesPerName;

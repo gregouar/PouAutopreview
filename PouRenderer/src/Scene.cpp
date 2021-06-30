@@ -1,20 +1,29 @@
 #include "Scene.h"
 #include "Utils.h"
 
+#include <math.h>
+
 #include <glm/gtc/matrix_transform.hpp>
 
 
 const unsigned int SHADOW_WIDTH = 1024, SHADOW_HEIGHT = 1024;
 
 
+//void renderQuad(glm::vec2 startPoint = glm::vec2(-1.0f), glm::vec2 endPoint = glm::vec2(1.0f));
+
+
 unsigned int quadVAO = 0;
 unsigned int quadVBO;
-void renderQuad()
+void renderQuad(/*glm::vec2 startPoint, glm::vec2 endPoint*/)
 {
     if (quadVAO == 0)
     {
         float quadVertices[] = {
             // positions        // texture Coords
+             /*startPoint.x,  endPoint.y,     0.0f, 0.0f, 1.0f,
+             startPoint.x,  startPoint.y,   0.0f, 0.0f, 0.0f,
+             endPoint.x,    endPoint.y,     0.0f, 1.0f, 1.0f,
+             endPoint.x,    startPoint.y,   0.0f, 1.0f, 0.0f,*/
             -1.0f,  1.0f, 0.0f, 0.0f, 1.0f,
             -1.0f, -1.0f, 0.0f, 0.0f, 0.0f,
              1.0f,  1.0f, 0.0f, 1.0f, 1.0f,
@@ -143,6 +152,7 @@ bool Scene::initRendering(unsigned int brdfLUTTexture)
     this->loadHDR(m_hdrTexturePath);
     this->compileBlurShader(true);
     this->compileBlurShader(false);
+    this->compileUIShader();
 
     int j = 0;
     for(auto light : m_lights)
@@ -360,7 +370,7 @@ void Scene::setupCamera(CameraAngle &camAngle, glm::mat4 &projection)
     m_camZAngle = camAngle.angleZ;
 }
 
-void Scene::renderModel(Model *srcModel, unsigned int defaultFBO)
+void Scene::renderModel(TextRenderer *textRenderer, Model *srcModel, unsigned int defaultFBO)
 {
     if(!srcModel)
         return;
@@ -381,7 +391,60 @@ void Scene::renderModel(Model *srcModel, unsigned int defaultFBO)
 
     glBindFramebuffer(GL_FRAMEBUFFER, defaultFBO);
     this->renderFront(srcModel, model);
+    this->renderScale(textRenderer, srcModel->getScaleFactor());
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
+}
+
+
+float computeScale(float scaleFactor)
+{
+    int exponent = (int)(log10(scaleFactor));
+
+    float tenPower =  pow(10.0f, exponent);
+
+    if(scaleFactor < tenPower * 3)
+    {
+        return tenPower;
+    }
+    else if (scaleFactor < tenPower * 7.5)
+    {
+        return tenPower * 5;
+    }
+    else
+    {
+        return tenPower * 10;
+    }
+}
+
+void Scene::renderScale(TextRenderer *textRenderer, float scaleFactor)
+{
+    /* should add options to personnalize size, position etc */
+
+    float desiredScaleLength = .25f;
+    float scaleWidth = .1f;
+
+    float rescaleFactor = scaleFactor * desiredScaleLength * 0.5;
+    float roundedScaleFactor = computeScale(rescaleFactor);
+
+    m_UIshader.use();
+
+    m_UIshader.setVec4("color", glm::vec4 (0.0f,0.0f,0.0f,1.0f));
+    m_UIshader.setVec2("startPos", glm::vec2(-0.99f, -.99f));
+    m_UIshader.setVec2("size", glm::vec2(desiredScaleLength*roundedScaleFactor/rescaleFactor, scaleWidth));
+
+    glDisable(GL_CULL_FACE);
+    glDisable(GL_DEPTH_TEST);
+
+    renderQuad();
+
+    std::string scaleText;
+
+    if(roundedScaleFactor < 10)
+        scaleText = std::to_string((int)(roundedScaleFactor))+"mm";
+    else //if(roundedScaleFactor < 100)
+        scaleText = std::to_string((int)(roundedScaleFactor/10.0f))+"cm";
+
+    textRenderer->renderText(scaleText,-1.0f+0.02,-1.0f+0.05,1.0f,glm::vec3(1.0f));
 }
 
 /*void Scene::render(CameraAngle &camAngle)

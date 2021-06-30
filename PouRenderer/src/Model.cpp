@@ -26,6 +26,12 @@ void Model::draw(Shader *shader, Shader *shaderTextured, int textureIdShift)
         m_meshes[i].draw(shader, shaderTextured, textureIdShift);
 }
 
+
+float Model::getScaleFactor()
+{
+    return m_scaleFactor;
+}
+
 const glm::mat4 &Model::getNormalization()
 {
     return m_normalizationMatrix;
@@ -202,6 +208,8 @@ std::vector<Texture> Model::loadMaterialTextures(aiMaterial *mat, aiTextureType 
 void Model::computeNormalization(const aiScene *scene)
 {
     float tmp = std::max(std::max(m_maxVertex.x-m_minVertex.x,m_maxVertex.y-m_minVertex.y),m_maxVertex.z-m_minVertex.z);
+
+    m_scaleFactor = tmp;
 
     glm::vec3 center = 0.5f * glm::vec3(m_maxVertex.x+m_minVertex.x,
                                         m_maxVertex.y+m_minVertex.y,
