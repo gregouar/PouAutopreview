@@ -640,7 +640,8 @@ void Scene::renderFront(Model *srcModel, glm::mat4 &model)
         m_defaultShader[i].setMat4("model", model);
     }
 
-    glEnable(GL_CULL_FACE);
+    ///glEnable(GL_CULL_FACE);
+    glDisable(GL_CULL_FACE);
     glCullFace(GL_BACK);
 
     glEnable(GL_DEPTH_TEST);
